@@ -26,12 +26,11 @@ def check(url):
         html = response.read()
     if is_available(html):
         print(url, 'is available')
-        mail_command = 'echo "%s" |mail -s "Disk Space Full" %s'
         msg = url + ' is available'
-        p = subprocess.Popen(['mail -s "LEGO in-stock notice" %s' % (EMAIL,)],
+        p = subprocess.Popen(['mail', '-s', 'LEGO in-stock notice', EMAIL,],
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        out = p.communicate(input=msg)[0]
-        print('out=', out)
+        out = p.communicate(input=msg.encode('utf-8'))[0]
+        print('sending email')
     else:
         print(url, 'is NOT available')
 
@@ -39,8 +38,8 @@ def check(url):
 def job():
 
     URLS = (
-#        'http://shop.lego.com/en-CA/Porsche-911-GT3-RS-42056',
-        'http://shop.lego.com/en-CA/Hydroplane-Racer-42045',
+        'http://shop.lego.com/en-CA/Porsche-911-GT3-RS-42056',
+        #        'http://shop.lego.com/en-CA/Hydroplane-Racer-42045',
 #        'http://shop.lego.com/en-CA/Volkswagen-Beetle-10252',
         )
     for url in URLS:
@@ -48,10 +47,10 @@ def job():
 
 def main():
     job()
-    schedule.every(1).minute.do(job)
-    while True:
-        schedule.run_pending()
-        time.sleep(1)
+#    schedule.every(1).minute.do(job)
+#    while True:
+#        schedule.run_pending()
+#        time.sleep(1)
 
 if __name__ == '__main__':
     main()
