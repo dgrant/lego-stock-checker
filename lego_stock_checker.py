@@ -1,10 +1,12 @@
 import time
-import schedule
+#import schedule
 import urllib.request
 from bs4 import BeautifulSoup
 import subprocess
 
-EMAIL='davidgrant@gmail.com'
+import lego_stock_checker_conf
+
+EMAIL=lego_stock_checker_conf.EMAIL
 
 NOT_AVAILABLE=(
     'availability-questionable',
@@ -38,12 +40,7 @@ def check(url):
 
 def job():
 
-    URLS = (
-            'http://shop.lego.com/en-US/The-Disney-Castle-71040',
-            #        'http://shop.lego.com/en-CA/Porsche-911-GT3-RS-42056',
-        #        'http://shop.lego.com/en-CA/Hydroplane-Racer-42045',
-#        'http://shop.lego.com/en-CA/Volkswagen-Beetle-10252',
-        )
+    URLS = lego_stock_checker_conf.URLS
     for url in URLS:
         check(url)
 
