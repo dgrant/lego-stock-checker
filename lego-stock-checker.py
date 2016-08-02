@@ -18,6 +18,7 @@ def is_available(html):
         if li.get('class'):
             for class_name in li['class']:
                 if class_name in NOT_AVAILABLE:
+                    #                    print('class_name=', class_name)
                     return False
     return True
 
@@ -38,7 +39,8 @@ def check(url):
 def job():
 
     URLS = (
-        'http://shop.lego.com/en-CA/Porsche-911-GT3-RS-42056',
+            'http://shop.lego.com/en-US/The-Disney-Castle-71040',
+            #        'http://shop.lego.com/en-CA/Porsche-911-GT3-RS-42056',
         #        'http://shop.lego.com/en-CA/Hydroplane-Racer-42045',
 #        'http://shop.lego.com/en-CA/Volkswagen-Beetle-10252',
         )
