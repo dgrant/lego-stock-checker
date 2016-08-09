@@ -15,7 +15,10 @@ NOT_AVAILABLE=(
 
 def is_available(html):
     soup = BeautifulSoup(html, 'html.parser')
-    lis = soup.find(id='product-info').find_all('li')
+    product_info = soup.find(id='product-info')
+    if product_info == None:
+        raise Exception('Could not find product-info.\nhtml=\n' + html)
+    lis = product_info.find_all('li')
     for li in lis:
         if li.get('class'):
             for class_name in li['class']:
