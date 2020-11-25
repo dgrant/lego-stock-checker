@@ -20,5 +20,7 @@ poetry shell
 
 # Running
 
-* Copy the lego_stock_checker_conf.py.example to lego_stock_checker_conf.py and edit.
-* ./lego_stock_checker.py
+```
+cp lego_stock_checker_conf.py.example lego_stock_checker_conf.py
+./lego_stock_checker.py
+```
