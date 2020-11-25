@@ -1,2 +1,6 @@
-env/
+/env/
+/.venv/
+/venv/
 __pycache__/
+/*.egg-info/
+/lego_stock_checker_conf.py

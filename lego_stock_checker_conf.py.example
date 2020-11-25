@@ -1,5 +1,6 @@
-EMAIL='user@gmail.com'
+EMAIL='davidgrant@gmail.com'
 
 URLS = (
-        'http://shop.lego.com/en-US/The-Disney-Castle-71040',
+        "https://www.lego.com/en-ca/product/elf-club-house-10275",
+        "https://www.lego.com/en-ca/product/hogwarts-castle-71043",
         )

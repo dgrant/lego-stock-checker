@@ -1,16 +1,20 @@
 # lego-stock-checker
 Check for LEGO items coming back into stock
 
-# Dependencies
-
-* python 3
-* BeautifulSoup
-
-# Running
+# Installing dependencies
 
 I recommend using the included requirements.txt to install dependencies in a virtualenv. eg:
 
-* virtualenv env
-* pip install -r requirements
+* python3 -m venv .venv
+* source .venv/bin/activate
+* pip install -r requirements.txt
+
+OR
+
+* poetry install
+* poetry shell
+
+# Running
+
 * Copy the lego_stock_checker_conf.py.example to lego_stock_checker_conf.py and edit.
-* env/bin/python lego_stock_checker.py
+* ./lego_stock_checker.py

@@ -1,4 +1,7 @@
+#!/usr/bin/env python3
+
 import time
+import requests
 #import schedule
 import urllib.request
 from bs4 import BeautifulSoup
@@ -9,27 +12,19 @@ import lego_stock_checker_conf
 EMAIL=lego_stock_checker_conf.EMAIL
 
 NOT_AVAILABLE=(
-    'availability-questionable',
-    'availability-future',
+    'Temporarily out of stock',
 )
 
-def is_available(html):
+def is_available(html: str):
     soup = BeautifulSoup(html, 'html.parser')
-    product_info = soup.find(id='product-info')
-    if product_info == None:
-        raise Exception('Could not find product-info.\nhtml=\n' + html)
-    lis = product_info.find_all('li')
-    for li in lis:
-        if li.get('class'):
-            for class_name in li['class']:
-                if class_name in NOT_AVAILABLE:
-                    #                    print('class_name=', class_name)
-                    return False
-    return True
+    product_avail = soup.find("p", {"data-test": "product-overview-availability"})
+    if not product_avail:
+        raise Exception('Could not find product-overview-availability.')
+    avail = product_avail.find('span').text
+    return avail not in NOT_AVAILABLE
 
-def check(url):
-    with urllib.request.urlopen(url) as response:
-        html = response.read()
+def check(url: str):
+    html = requests.get(url).text
     if is_available(html):
         print(url, 'is available')
         msg = url + ' is available'
