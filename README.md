@@ -5,14 +5,18 @@ Check for LEGO items coming back into stock
 
 I recommend using the included requirements.txt to install dependencies in a virtualenv. eg:
 
-* python3 -m venv .venv
-* source .venv/bin/activate
-* pip install -r requirements.txt
+```
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+```
 
 OR
 
-* poetry install
-* poetry shell
+```
+poetry install
+poetry shell
+```
 
 # Running
 
