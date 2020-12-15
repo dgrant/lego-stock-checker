@@ -6,14 +6,23 @@ import requests
 import urllib.request
 from bs4 import BeautifulSoup
 import subprocess
+from twilio.rest import Client
 
 import lego_stock_checker_conf
 
-EMAIL=lego_stock_checker_conf.EMAIL
+ACCOUNT=lego_stock_checker_conf.ACCOUNT
+TOKEN=lego_stock_checker_conf.TOKEN
+PHONE=lego_stock_checker_conf.PHONE
 
 NOT_AVAILABLE=(
     'Temporarily out of stock',
 )
+
+
+def send_sms(message):
+    client = Client(ACCOUNT, TOKEN)
+    client.messages.create(to=PHONE, body=message)
+
 
 def is_available(html: str):
     soup = BeautifulSoup(html, 'html.parser')
@@ -23,15 +32,13 @@ def is_available(html: str):
     avail = product_avail.find('span').text
     return avail not in NOT_AVAILABLE
 
+
 def check(url: str):
     html = requests.get(url).text
     if is_available(html):
         print(url, 'is available')
         msg = url + ' is available'
-        p = subprocess.Popen(['mail', '-s', 'LEGO in-stock notice', EMAIL,],
-            stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-        out = p.communicate(input=msg.encode('utf-8'))[0]
-        print('sending email')
+        send_sms(msg)
     else:
         print(url, 'is NOT available')
 

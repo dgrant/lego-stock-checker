@@ -1,4 +1,6 @@
-EMAIL='davidgrant@gmail.com'
+ACCOUNT = "XXXX"
+TOKEN = "XXXX"
+PHONE = "XXXX"
 
 URLS = (
         "https://www.lego.com/en-ca/product/elf-club-house-10275",
