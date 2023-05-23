@@ -6,7 +6,7 @@ authors = ["David Grant <davidgrant@gmail.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-requests = "^2.25.0"
+requests = "^2.31.0"
 beautifulsoup4 = "^4.9.3"
 schedule = "^0.6.0"
 twilio = "^6.48.0"
